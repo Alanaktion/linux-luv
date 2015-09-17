@@ -1,0 +1,68 @@
+/*TODO: Change to SASS here soon */
+
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono);
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+*:focus {
+    outline: 0;
+}
+
+body {
+	background: url(kitty.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+
+.terminal-wrapper {
+	position: absolute;
+	top:50%;
+	left: 50%;
+	width: 575px;
+	height: 415px;
+	margin-top: -207.5px;
+	margin-left: -287.5px;
+	background-color: black;
+	border-radius: 4px;
+	font-family: 'Ubuntu Mono', serif;
+}
+
+.panel {
+	background: #2a2a2a;
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	color: #FFFFFF;
+	padding: 5px;
+	font-size: 14px;
+	border-radius: 4px 4px 0 0;
+}
+.terminal {
+	padding:2px;
+	color:#268bd2;
+}
+
+form {
+	border:none;
+}
+
+input[type=text] {
+	width: 380px;
+	background-color:#000000;
+	border: none;
+	color:#268bd2;
+}
+
+input[type=text] :focus,
+input[type=text] :active,
+input[type=text] :hover,
+input[type=text] :visited {
+	border:none;
+	outline: 0;
+	background-color:#000000;
+	color:#268bd2;
+}
