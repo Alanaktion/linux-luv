@@ -36,17 +36,17 @@ function done(first) {
 		div.appendChild(span).innerHTML = guest;
 		div.appendChild(input);
 	}
-	//runs evry time after
+	//runs every time after
 	else {
 		var cmd = document.querySelector('.await').value;
 		document.querySelector('.await').remove();
 		document.querySelector('.current').remove();
 		var span = document.createElement("SPAN");
 		span.setAttribute("class", "history");
-
 		span.innerHTML = guest + cmd;
+
 		var div = document.querySelector('.span-wrapper');
-		div.appendChild(span).innerHTML;
+		div.appendChild(span);
 
 		var span = document.createElement("SPAN");
 		span.setAttribute("class", "current");
