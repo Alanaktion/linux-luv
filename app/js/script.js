@@ -9,8 +9,10 @@ var terminal = {
 window.onload = function() {
 	done(true);
 	attachListeners();
+	attachInputListener();
 }
 
+//TODO: make into two functions
 function done(first) {
 	var guest = terminal.user + terminal.directory + terminal.comp;
 	if(first == true) {
@@ -29,52 +31,53 @@ function done(first) {
 		input.setAttribute("spellcheck", "false");
 		input.setAttribute("class", "await");
 		var span = document.createElement("SPAN");
-		span.setAttribute("class", "history");
+		span.setAttribute("class", "current");
 		div.appendChild(span).innerHTML = guest;
-		form.appendChild(input);
+		div.appendChild(input);
 		var cmd = "";
 	}
 	else {
+		var cmd = document.querySelector('.await').value;
+		document.querySelector('.await').remove();
+		document.querySelector('.current').remove();
 		var span = document.createElement("SPAN");
 		span.setAttribute("class", "history");
-		// form.appendChild(span).innerHTML = guest;
-		//get value of input
-		var cmd = document.querySelector('.await').value;
+
 		span.innerHTML = guest + cmd;
 		var div = document.querySelector('.span-wrapper');
 		div.appendChild(span).innerHTML;
+
+		var span = document.createElement("SPAN");
+		span.setAttribute("class", "current");
+		div.appendChild(span).innerHTML = guest;
+
+		var input = document.createElement("INPUT");
+		input.setAttribute("type", "text");
+		input.setAttribute("spellcheck", "false");
+		input.setAttribute("class", "await");
+		div.appendChild(input);
+
+		attachInputListener();
 	}
-	console.log('made it here');
-	//  var input = document.createElement("INPUT");
-	// 	var guest = terminal.user + terminal.directory + terminal.comp;
-	// 	form.setAttribute("class", "terminal-form");
-	// 	label.setAttribute("class", "username");
-	// 	form.appendChild(label);
-	// 	form.appendChild(input);
+}
+
+function attachInputListener() {
+	document.querySelector(".terminal-wrapper").addEventListener("click", function(){ 
+		document.querySelector(".await").focus();
+	});
+	document.querySelector(".await").addEventListener("keypress", function(e){
+		var key = e.which || e.keyCode;
+		if(key === 13) {
+			done(false);
+			document.querySelector(".await").focus();
+		}
+	});
 }
 
 function attachListeners() {
 	//make active on click
 	document.querySelector(".terminal-form").addEventListener("submit", function(e){ 
 		e.preventDefault();
-	});
-	document.querySelector(".terminal-wrapper").addEventListener("click", function(){ 
-		document.querySelector(".await").focus();
-	});
-	//listen for enter
-	document.querySelector(".await").addEventListener("keypress", function(e){
-		var cmd = "";
-		var key = e.which || e.keyCode;
-		if(key === 13) {
-			done(false);
-			// cmd = document.querySelector(".await").value;
-			// document.querySelector(".await").remove();
-			// document.querySelector(".terminal-form").appendChild(cmd);
-			// document.querySelector(".username").remove();
-			// document.querySelector(".terminal-form").remove();
-
-			//runCmd(cmd);
-		}
 	});
 }
 

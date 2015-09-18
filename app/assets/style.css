@@ -29,6 +29,7 @@ body {
 	background-color: rgba(0, 0, 0, 0.7);
 	border-radius: 4px;
 	font-family: 'Ubuntu Mono', monospace;
+	border-bottom: solid 15px #2a2a2a;
 }
 
 .panel {
@@ -42,8 +43,14 @@ body {
 	border-radius: 4px 4px 0 0;
 }
 .terminal {
+	height: 350px;
+    padding-right: 2px 1px 2px 2px;
+    width: 573px;
 	padding: 2px;
 	color: #268bd2;
+	overflow-y:scroll;
+/*	height: 365px;*/
+
 }
 
 form {
@@ -51,7 +58,7 @@ form {
 }
 
 input[type=text] {
-	width: 380px;
+	width: 340px;
 	background-color: transparent;
 	border: none;
 	color: inherit;
