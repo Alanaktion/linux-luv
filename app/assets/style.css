@@ -66,3 +66,6 @@ input[type=text] :visited {
 	outline: 0;
 }
 
+.history {
+	display:block;
+}
