@@ -15,6 +15,7 @@ window.onload = function() {
 //TODO: make into two functions
 function done(first) {
 	var guest = terminal.user + terminal.directory + terminal.comp;
+	//run first time through
 	if(first == true) {
 		var form = document.createElement("FORM");
 		form.setAttribute("class", "terminal-form");
@@ -34,8 +35,8 @@ function done(first) {
 		span.setAttribute("class", "current");
 		div.appendChild(span).innerHTML = guest;
 		div.appendChild(input);
-		var cmd = "";
 	}
+	//runs evry time after
 	else {
 		var cmd = document.querySelector('.await').value;
 		document.querySelector('.await').remove();
@@ -66,6 +67,7 @@ function attachInputListener() {
 		document.querySelector(".await").focus();
 	});
 	document.querySelector(".await").addEventListener("keypress", function(e){
+		//listen for enter key
 		var key = e.which || e.keyCode;
 		if(key === 13) {
 			done(false);
@@ -80,9 +82,7 @@ function attachListeners() {
 		e.preventDefault();
 	});
 }
-
+//TODO: run commands using user input
 function runCmd(cmd) {
 	done();
-	console.log(cmd);
-
 }
