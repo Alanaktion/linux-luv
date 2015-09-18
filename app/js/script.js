@@ -48,14 +48,12 @@ function done(first) {
 		var div = document.querySelector('.span-wrapper');
 		div.appendChild(span);
 
-		//insert cmd output
-		if(cmd == "GO!") {
-			var respond = "something here.";
-			var response = document.createElement("SPAN");
-			response.setAttribute("class", "history");
-			response.innerHTML = respond;
-			div.appendChild(response);
-		}
+		//Get response
+		var respond = runCmd(cmd);
+		var response = document.createElement("SPAN");
+		response.setAttribute("class", "history");
+		response.innerHTML = respond;
+		div.appendChild(response);
 
 		var span = document.createElement("SPAN");
 		span.setAttribute("class", "current");
@@ -93,5 +91,5 @@ function attachListeners() {
 }
 //TODO: run commands using user input
 function runCmd(cmd) {
-	done();
+	return cmd + ": command not found";
 }
