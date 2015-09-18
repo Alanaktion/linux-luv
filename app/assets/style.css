@@ -26,9 +26,9 @@ body {
 	height: 415px;
 	margin-top: -207.5px;
 	margin-left: -287.5px;
-	background-color: black;
+	background-color: rgba(0, 0, 0, 0.7);
 	border-radius: 4px;
-	font-family: 'Ubuntu Mono', serif;
+	font-family: 'Ubuntu Mono', monospace;
 }
 
 .panel {
@@ -42,27 +42,27 @@ body {
 	border-radius: 4px 4px 0 0;
 }
 .terminal {
-	padding:2px;
-	color:#268bd2;
+	padding: 2px;
+	color: #268bd2;
 }
 
 form {
-	border:none;
+	border: none;
 }
 
 input[type=text] {
 	width: 380px;
-	background-color:#000000;
+	background-color: transparent;
 	border: none;
-	color:#268bd2;
+	color: inherit;
+	font: inherit;
 }
 
 input[type=text] :focus,
 input[type=text] :active,
 input[type=text] :hover,
 input[type=text] :visited {
-	border:none;
+	border: none;
 	outline: 0;
-	background-color:#000000;
-	color:#268bd2;
 }
+
