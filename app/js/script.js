@@ -1,62 +1,65 @@
 
-//instantiate temrinal object
+window.onload = function() {
+	terminal.startTerminal();
+	terminal.attachListeners();
+	terminal.attachInputListener();
+};
+
+//terminal object
 var terminal = {
 	user: "guest@over300laughs:",
 	directory:  "~",
 	comp: '$ ',
-	done: function (first) {
+	startTerminal: function() {
 		var guest = terminal.user + terminal.directory + terminal.comp;
-		//run first time through
-		if(first === true) {
-			var form = document.createElement("FORM");
-			form.setAttribute("class", "terminal-form");
+		var form = document.createElement("FORM");
+		form.setAttribute("class", "terminal-form");
 
-			var cmdLine = document.getElementById("user");
-			cmdLine.appendChild(form);
+		var cmdLine = document.getElementById("user");
+		cmdLine.appendChild(form);
 
-			var div = document.createElement("DIV");
-			div.setAttribute("class", "span-wrapper");
-			form.appendChild(div);
-			
-			var input = document.createElement("INPUT");
-			input.setAttribute("type", "text");
-			input.setAttribute("spellcheck", "false");
-			input.setAttribute("class", "await");
-			var span = document.createElement("SPAN");
-			span.setAttribute("class", "current");
-			div.appendChild(span).innerHTML = guest;
-			div.appendChild(input);
-			document.querySelector(".await").focus();
+		var div = document.createElement("DIV");
+		div.setAttribute("class", "span-wrapper");
+		form.appendChild(div);
+		
+		var input = document.createElement("INPUT");
+		input.setAttribute("type", "text");
+		input.setAttribute("spellcheck", "false");
+		input.setAttribute("class", "await");
+		var span = document.createElement("SPAN");
+		span.setAttribute("class", "current");
+		div.appendChild(span).innerHTML = guest;
+		div.appendChild(input);
+		document.querySelector(".await").focus();
+	},
+	done: function () {
+		var guest = terminal.user + terminal.directory + terminal.comp;
+		var cmd = document.querySelector('.await').value;
+		document.querySelector('.await').remove();
+		document.querySelector('.current').remove();
+		var span = document.createElement("SPAN");
+		span.setAttribute("class", "history");
+		span.innerHTML = guest + cmd;
+
+		var div = document.querySelector('.span-wrapper');
+		div.appendChild(span);
+
+		//run command
+		if(cmd !== "") {
+			this.runCmd(cmd);
 		}
-		//runs every time after
-		else {
-			var cmd = document.querySelector('.await').value;
-			document.querySelector('.await').remove();
-			document.querySelector('.current').remove();
-			var span = document.createElement("SPAN");
-			span.setAttribute("class", "history");
-			span.innerHTML = guest + cmd;
 
-			var div = document.querySelector('.span-wrapper');
-			div.appendChild(span);
+		span = document.createElement("SPAN");
+		span.setAttribute("class", "current");
+		div.appendChild(span).innerHTML = guest;
 
-			//run command
-			if(cmd !== "") {
-				this.runCmd(cmd);
-			}
+		var input = document.createElement("INPUT");
+		input.setAttribute("type", "text");
+		input.setAttribute("spellcheck", "false");
+		input.setAttribute("class", "await");
+		div.appendChild(input);
 
-			span = document.createElement("SPAN");
-			span.setAttribute("class", "current");
-			div.appendChild(span).innerHTML = guest;
-
-			var input = document.createElement("INPUT");
-			input.setAttribute("type", "text");
-			input.setAttribute("spellcheck", "false");
-			input.setAttribute("class", "await");
-			div.appendChild(input);
-
-			this.attachInputListener();
-		}
+		this.attachInputListener();
 	},
 	attachInputListener: function() {
 		document.querySelector(".terminal-wrapper").addEventListener("click", function(){ 
@@ -66,7 +69,7 @@ var terminal = {
 			//listen for enter key
 			var key = e.which || e.keyCode;
 			if(key === 13) {
-				terminal.done(false);
+				terminal.done();
 				document.querySelector(".await").focus();
 			}
 		});
@@ -91,12 +94,6 @@ var terminal = {
 			div.appendChild(response);
 		}
 	}
-};
-
-window.onload = function() {
-	terminal.done(true);
-	terminal.attachListeners();
-	terminal.attachInputListener();
 };
 
 var mtr = {
