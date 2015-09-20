@@ -63,6 +63,7 @@ input[type=text] {
 	border: none;
 	color: inherit;
 	font: inherit;
+	padding: 0;
 }
 
 input[type=text] :focus,

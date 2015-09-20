@@ -10,13 +10,13 @@ window.onload = function() {
 	done(true);
 	attachListeners();
 	attachInputListener();
-}
+};
 
 //TODO: make into two functions
 function done(first) {
 	var guest = terminal.user + terminal.directory + terminal.comp;
 	//run first time through
-	if(first == true) {
+	if(first === true) {
 		var form = document.createElement("FORM");
 		form.setAttribute("class", "terminal-form");
 
@@ -35,6 +35,7 @@ function done(first) {
 		span.setAttribute("class", "current");
 		div.appendChild(span).innerHTML = guest;
 		div.appendChild(input);
+		document.querySelector(".await").focus();
 	}
 	//runs every time after
 	else {
@@ -49,13 +50,16 @@ function done(first) {
 		div.appendChild(span);
 
 		//Get response
-		var respond = runCmd(cmd);
-		var response = document.createElement("SPAN");
-		response.setAttribute("class", "history");
-		response.innerHTML = respond;
-		div.appendChild(response);
+		if(cmd !== "") {
+			runCmd(cmd);
+			// var respond = runCmd(cmd);
+			// var response = document.createElement("SPAN");
+			// response.setAttribute("class", "history");
+			// response.innerHTML = respond;
+			// div.appendChild(response);
+		}
 
-		var span = document.createElement("SPAN");
+		span = document.createElement("SPAN");
 		span.setAttribute("class", "current");
 		div.appendChild(span).innerHTML = guest;
 
@@ -89,7 +93,20 @@ function attachListeners() {
 		e.preventDefault();
 	});
 }
-//TODO: run commands using user input
+
 function runCmd(cmd) {
-	return cmd + ": command not found";
+	var line = cmd.split(' ');
+	try {
+		//use string as function
+		window[line[0]][line[1]](cmd);
+	}
+	catch(e) {
+		return cmd + ": command not found";
+	}
 }
+
+var mtr = {
+	css: function (cmd) {
+		alert('call me baby!' + cmd);
+	}
+};
